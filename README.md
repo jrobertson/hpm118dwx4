@@ -1,20 +1,17 @@
-# Printing an HTML booklet in A6 size using the HpM118dwx4 gem
-
+# Formatting an HTML document into pages using the HpM118dwx4 gem
 
 ## Usage
 
-    hp = HpM118dwx4.new 'page.html'
-    hp.pages[0] = "# Introduction\n\nHello World!"
-    hp.pages[1] = "## About\n\nSomething about me"
-    hp.pages[2] = "## Services provided\n\nWhat I offer."
-    hp.pages[3] = "## Contact me\n\nHere are my contact details ..."
-    hp.build
+    require 'hpm118dwx4'
+
+    hp = HpM118dwx4.new 'page8a.html', pg_height: 740, debug: true
+    puts hp.to_html
     hp.save
 
-The above example was used to print an HTML document with 8 pages with 4 pages per sheet on each side of paper. The printer used was a HP Laserjet Pro M118dw.
+Note: This gem was designed for printing 4 sheets per page on each side of the page. It was used with the HP Laserjet Pro M118dw printer.
 
 ## Resources
 
 * hpm118dwx4 https://rubygems.org/gems/hpm118dwx4
 
-hpm118dwx4 printer html booklet print book page
+html printer hpm118dwx4 page pages booklet book
