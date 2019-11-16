@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'hpm118dwx4'
-  s.version = '0.2.0'
+  s.version = '0.2.1'
   s.summary = 'Experimental gem to produce an HTML printed booklet in ' + 
       'A6 size using an HP Laserjet Pro M118dw printer.'
   s.authors = ['James Robertson']

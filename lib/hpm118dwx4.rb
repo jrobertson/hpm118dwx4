@@ -7,7 +7,7 @@ require 'htmlbook'
 
 
 class HpM118dwx4 < HtmlBook
-
+  using ColouredText
 
   def initialize(filename='page.html', pg_height: 500, debug: false)
 
@@ -54,16 +54,31 @@ CSS
 
   def collate(pages)
 
+    pps = 8 # pages per sheet
+
+    # pages are processed in multiples of 8 (4 pages x 2 sides)
+    n = (((pages.length + pps-1) / pps) * pps) - pages.length
+    puts 'n: ' + n.inspect if @debug
+    blanks = [nil] * n
+
     r = -2
-    a = pages.length.times.each_slice(8).flat_map do |x|
+           
+    a = (pages + blanks).length.times.each_slice(pps).flat_map do |x|
+           
       x.map.with_index do |y,i|
+           
         puts 'r: ' + r.inspect if @debug
         r+= [3, 3, 1, 3, -5, -1, 5, -1][i]
         r
+           
       end
     end
-    puts 'before zip' if @debug       
-    pages.zip(a)
+
+    puts ('before zip a:' + a.inspect).debug if @debug       
+    puts 'pages:' + pages.join("<br/>\n") if @debug
+    puts 'pages:' + pages.inspect if @debug
+    a.map {|x| pages[x-1]}.zip(a)
+
   end
 
 end
